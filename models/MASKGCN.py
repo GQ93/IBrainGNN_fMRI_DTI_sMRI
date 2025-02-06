@@ -87,10 +87,9 @@ class SymmetricMaskedGraphConv(nn.Module):
         adj_matrix = torch.tensor(graph.adjacency_matrix(scipy_fmt="coo").todense(), dtype=torch.float32).to(feat.device)
 
         # Apply the batch-compatible mask
-        adj_matrix_masked = torch.sigmoid(adj_matrix) * batch_mask
+        adj_matrix_masked = torch.sigmoid(adj_matrix) * batch_mask ## sigmoid is optional:  adj_matrix* batch_mask
 
         # Normalize adjacency matrix with the mask (optional normalization step)
-        # Example normalization omitted for brevity
 
         # Perform the GCN operation (AWX)
         support = torch.matmul(feat, self.weight)
