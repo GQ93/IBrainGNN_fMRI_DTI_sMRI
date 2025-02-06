@@ -1,0 +1,17 @@
+{
+  "model": "Linear",
+  "model_save_suffix": "LR",
+  "pretrain": false,
+  "pretrain_model_name": "",
+  "net_params": {
+    "num_layers": 0,
+    "in_channels": 400,
+    "hidden_channels": 256,
+    "out_channels": 256,
+    "dropout": 0,
+    "n_vars": 2,
+    "readout": "mean",
+    "activation": "relu",
+    "additional_feature": 11
+  }
+}

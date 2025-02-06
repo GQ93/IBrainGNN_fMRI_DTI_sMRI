@@ -1,0 +1,17 @@
+{
+  "model": "MLP",
+  "model_save_suffix": "MLP",
+  "pretrain": false,
+  "pretrain_model_name": "",
+  "net_params": {
+    "num_layers": 2,
+    "in_channels": 720,
+    "hidden_channels": 64,
+    "out_channels": 128,
+    "dropout": 0.2,
+    "activation": "relu",
+    "n_vars": 2,
+    "readout": "mean",
+    "additional_feature": 11
+  }
+}

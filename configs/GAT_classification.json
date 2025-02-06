@@ -1,0 +1,19 @@
+{
+  "model": "GAT",
+  "model_save_suffix": "GAT",
+  "pretrain": false,
+  "pretrain_model_name": "",
+  "net_params": {
+    "num_layers": 2,
+    "heads": 2,
+    "in_channels": 720,
+    "hidden_channels": 64,
+    "out_channels": 128,
+    "feat_drop": 0.2,
+    "attn_drop": 0,
+    "n_vars": 2,
+    "activation": "elu",
+    "readout": "mean",
+    "additional_feature": 11
+  }
+}
