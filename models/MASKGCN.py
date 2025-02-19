@@ -80,16 +80,21 @@ class SymmetricMaskedGraphConv(nn.Module):
 
         # Create a block-diagonal mask for the batch
         identity = torch.eye(self.edge_weight.size(0)).to(self.edge_weight.device)
-        mask = self.edge_weight + identity
+        # Options
+        # mask = self.edge_weight - torch.diag_embed(self.edge_weight.diag())  # 0 diagnal
+        # mask = self.edge_weight   # random diagnal
+        mask = self.edge_weight + identity # off set diagnal
+
         batch_mask = torch.block_diag(*[mask] * num_graphs_in_batch).to(feat.device)
 
         # Get the adjacency matrix of the batched graph
         adj_matrix = torch.tensor(graph.adjacency_matrix(scipy_fmt="coo").todense(), dtype=torch.float32).to(feat.device)
 
         # Apply the batch-compatible mask
-        adj_matrix_masked = torch.sigmoid(adj_matrix) * batch_mask ## sigmoid is optional:  adj_matrix* batch_mask
+        adj_matrix_masked = torch.sigmoid(adj_matrix) * batch_mask
 
         # Normalize adjacency matrix with the mask (optional normalization step)
+        # Example normalization omitted for brevity
 
         # Perform the GCN operation (AWX)
         support = torch.matmul(feat, self.weight)
