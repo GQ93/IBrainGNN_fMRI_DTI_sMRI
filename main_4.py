@@ -111,7 +111,7 @@ def main(args):
         # optimizer.load_state_dict(checkpoint['optimizer'])
 
     scheduler = lr_scheduler.ReduceLROnPlateau(optimizer, 'min', patience=10)
-    min_test_loss = 1e12
+    min_train_loss = 1e12
     #
     # early_stopping = utils.EarlyStopping(tolerance=10, min_delta=0)
     ##
@@ -133,9 +133,8 @@ def main(args):
                            global_step=epoch)
 
         # scheduler.step(epoch_loss_train)
-        epoch_loss_test = epoch_loss_train
-        if epoch_loss_test < min_test_loss:
-            min_test_loss = epoch_loss_test
+        if epoch_loss_train < min_train_loss:
+            min_train_loss = epoch_loss_train
             # model_state = copy.deepcopy(model.state_dict())
             # optimizer_state = copy.deepcopy(optimizer.state_dict())
             checkpoint = {
